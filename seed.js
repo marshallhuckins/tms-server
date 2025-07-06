@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
-// Replace with your MongoDB connection string
-const mongoURI = 'mongodb+srv://web335Admin:Password01@tms-cluster.ebh5hd3.mongodb.net/?retryWrites=true&w=majority&appName=tms-cluster';
+const mongoURI = 'mongodb+srv://web335Admin:Password01@tms-cluster.ebh5hd3.mongodb.net/tms?retryWrites=true&w=majority&appName=tms-cluster';
 
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB connected for seeding'))

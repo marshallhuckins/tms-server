@@ -10,10 +10,19 @@ const express = require('express');
 const createError = require('http-errors');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const mongoose = require('mongoose'); // <-- Added
 const { notFoundHandler, errorHandler } = require('./error-handler');
+const listTasksRoute = require('./routes/list-tasks.route');
 
 // Importing the index router
 const indexRouter = require('./routes/index');
+
+// MongoDB connection setup
+const mongoURI = 'mongodb+srv://web335Admin:Password01@tms-cluster.ebh5hd3.mongodb.net/tms?retryWrites=true&w=majority&appName=tms-cluster';
+
+mongoose.connect(mongoURI)
+  .then(() => console.log('MongoDB connected successfully.'))
+  .catch(err => console.error('MongoDB connection error:', err));
 
 // Variable declaration for the express app
 let app = express();
@@ -34,6 +43,7 @@ app.use(cookieParser());
 
 // Routing configuration
 app.use('/api', indexRouter);
+app.use('/api', listTasksRoute);
 
 // Use the error handling middleware
 app.use(notFoundHandler);
